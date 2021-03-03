@@ -2,11 +2,12 @@ from django.db.backends.signals import connection_created
 from polls.models import Question, Choice
 
 default_question = "Do you agree that Wuhan coronavirus is created by China?"
-#default_question = "Temp"
 
-def connection_created_func(sender,**kwargs):
+
+def connection_created_func(sender, **kwargs):
     print('DB connected')
     check_default_question()
+
 
 def check_default_question():
     try:

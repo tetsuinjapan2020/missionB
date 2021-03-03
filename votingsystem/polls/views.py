@@ -11,6 +11,7 @@ from rest_framework import viewsets
 from rest_framework.decorators import api_view
 import json
 
+
 # Create your views here.
 
 @api_view(['GET', 'POST'])
@@ -25,6 +26,7 @@ def questions_view(request):
             question = serializer.save()
             return Response(QuestionListPageSerializer(question).data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 @api_view(['GET', 'PATCH', 'DELETE'])
 def question_detail_view(request, question_id):
@@ -42,6 +44,7 @@ def question_detail_view(request, question_id):
         question.delete()
         return Response("Question deleted", status=status.HTTP_204_NO_CONTENT)
 
+
 @api_view(['POST'])
 def choices_view(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
@@ -50,6 +53,7 @@ def choices_view(request, question_id):
         choice = serializer.save(question=question)
         return Response(ChoiceSerializer(choice).data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 @api_view(['PATCH'])
 def vote_view(request, question_id):
@@ -62,6 +66,7 @@ def vote_view(request, question_id):
         return Response("Voted")
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
 @api_view(['GET'])
 def question_result_view(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
@@ -71,7 +76,6 @@ def question_result_view(request, question_id):
 
 @api_view(['GET', 'PATCH'])
 def wuhan_vote(request):
-
     default_question = "Do you agree that Wuhan coronavirus is created by China?"
     question = Question.objects.get(question_text=default_question)
     question = get_object_or_404(Question, pk=question.id)
@@ -90,11 +94,3 @@ def wuhan_vote(request):
             choice.save()
             return Response("Voted")
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-
-
-
-
-
-
