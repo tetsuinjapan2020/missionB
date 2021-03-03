@@ -5,7 +5,6 @@ from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
 from rest_framework import status
 from polls.models import Question
-#from polls.serializers import QuestionSerializer
 from polls.serializers import *
 
 from rest_framework import viewsets
@@ -70,20 +69,32 @@ def question_result_view(request, question_id):
     return Response(serializer.data)
 
 
+@api_view(['GET', 'PATCH'])
+def wuhan_vote(request):
+
+    default_question = "Do you agree that Wuhan coronavirus is created by China?"
+    question = Question.objects.get(question_text=default_question)
+    question = get_object_or_404(Question, pk=question.id)
+
+    if request.method == 'GET':
+        serializer = QuestionResultPageSerializer(question)
+        return Response(serializer.data)
+
+    elif request.method == 'PATCH':
+        serializer = WuhanVoteSerializer(data=request.data)
+        if serializer.is_valid():
+            choice = get_object_or_404(Choice, choice_text='Agree', question=question)
+            if serializer.validated_data['agree'] is False:
+                choice = get_object_or_404(Choice, choice_text='Disagree', question=question)
+            choice.votes += 1
+            choice.save()
+            return Response("Voted")
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-#class QuestionViewSet(viewsets.ModelViewSet):
-#    queryset = Question.objects.all()
-#    serializer_class = QuestionSerializer
-
-
-#class ChoiceViewSet(viewsets.ModelViewSet):
-#    serializer_class = ChoiceSerializer
 
 
 
-def polls_testing(request):
-    logger.warning('---- 2 ----')
-    return render(request, 'polls_testing.html', {
-        'data' : "Vote",
-        })
+
+
+

@@ -9,4 +9,5 @@ urlpatterns = [
     path('questions/<int:question_id>/choices/', views.choices_view, name='choices_view'),
     path('questions/<int:question_id>/vote/', views.vote_view, name='vote_view'),
     path('questions/<int:question_id>/result/', views.question_result_view, name='question_result_view'),
+    path('access/missionb/wuhan_vote/', views.wuhan_vote),
 ]

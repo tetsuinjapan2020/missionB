@@ -1,12 +1,9 @@
 from rest_framework import serializers
 from polls.models import Question, Choice
 
-#class QuestionSerializer(serializers.ModelSerializer):
 class QuestionListPageSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
     question_text = serializers.CharField(max_length=200)
-    #pub_date = serializers.DateTimeField()
-    #was_published_recently = serializers.BooleanField(read_only=True)
     
     def create(self, validated_data):
         return Question.objects.create(**validated_data)
@@ -27,7 +24,6 @@ class ChoiceSerializer(serializers.ModelSerializer):
         return Choice.objects.create(**validated_data)
     class Meta:
         model = Choice
-        #fields = '__all__'
         fields = ('id', 'choice_text')
 
 class QuestionDetailPageSerializer(QuestionListPageSerializer):
@@ -47,4 +43,7 @@ class QuestionResultPageSerializer(QuestionListPageSerializer):
     class Meta:
         model = Question
         fields = ('question_text', 'choices')
+
+class WuhanVoteSerializer(serializers.Serializer):
+    agree = serializers.BooleanField()
 
