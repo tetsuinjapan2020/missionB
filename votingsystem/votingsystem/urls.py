@@ -14,12 +14,22 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.conf.urls import url
+from django.conf.urls import url, include
+from rest_framework.routers import DefaultRouter
+from polls import views
+from polls import urls
 
+router = DefaultRouter()
+#router.register(r'question', views.QuestionViewSet)
 
-from polls.views import polls_testing
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^test/', polls_testing),
+    url('api/polls/', include('polls.urls'))
+    #url('api/polls/', questions_view),
+    #url('api/polls/questions/<int:question_id>/', question_detail_view)
+
+    #url('api/polls/', include('polls.urls'))
+    #url(r'^test/', polls_testing),
+    #url(r'^api/', include(router.urls)),
 ]

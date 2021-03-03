@@ -1,1 +1,2 @@
-from . import signals
+#from . import signals
+default_app_config = 'polls.apps.PollsConfig'
