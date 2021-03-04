@@ -24,10 +24,11 @@ Install [Django-REST-framework](https://www.django-rest-framework.org/)
   
 * Get the current votes count of wuhan coronavirus  
 `GET {{server_ip}}:{{server_port}}/api/polls/access/missionb/wuhan_vote/`  
+    
+<div align=center><img width="640" height="320" src="https://github.com/tetsuinjapan2020/missionB/blob/main/img/get_result.png"/></div>
 
-![image](https://github.com/tetsuinjapan2020/missionB/blob/main/img/get_result.png)  
 
 * Vote  
 `PATCH {{server_ip}}:{{server_port}}/api/polls/access/missionb/wuhan_vote/`  
   
-![image](https://github.com/tetsuinjapan2020/missionB/blob/main/img/vote.png) 
+<div align=center><img width="640" height="320" src="https://github.com/tetsuinjapan2020/missionB/blob/main/img/vote.png"/></div>
