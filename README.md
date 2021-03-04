@@ -23,6 +23,11 @@ Install [Django-REST-framework](https://www.django-rest-framework.org/)
 ## The APIs for ACCESS Companay  
   
 * Get the current votes count of wuhan coronavirus  
-`GET {{server_ip}}:{{server_port}}/api/polls/access/missionb/wuhan_vote/`
+`GET {{server_ip}}:{{server_port}}/api/polls/access/missionb/wuhan_vote/`  
+
+![image](https://github.com/tetsuinjapan2020/missionB/blob/main/img/get_result.png)  
+
 * Vote  
-`PATCH {{server_ip}}:{{server_port}}/api/polls/access/missionb/wuhan_vote/` 
+`PATCH {{server_ip}}:{{server_port}}/api/polls/access/missionb/wuhan_vote/`  
+  
+![image](https://github.com/tetsuinjapan2020/missionB/blob/main/img/vote.png) 
