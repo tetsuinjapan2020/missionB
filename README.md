@@ -31,4 +31,6 @@ Install [Django-REST-framework](https://www.django-rest-framework.org/)
 * Vote  
 `PATCH {{server_ip}}:{{server_port}}/api/polls/access/missionb/wuhan_vote/`  
   
+  the body is json format and the field is "agree" with the value of true or fasle (true means agree, and false means disagree)
+  
 <div align=center><img width="640" height="320" src="https://github.com/tetsuinjapan2020/missionB/blob/main/img/vote.png"/></div>
